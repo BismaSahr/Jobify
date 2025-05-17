@@ -1,5 +1,6 @@
-import Logo from '../src/logo.js';
-import React, { useState } from 'react';
+import Logo from '../../logo';
+
+import React, { useState, useContext } from 'react';
 import {
   View,
   KeyboardAvoidingView,
@@ -11,8 +12,15 @@ import {
   Platform,
   ScrollView,
 } from 'react-native';
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
+import { StackActions, NavigationActions } from '@react-navigation/native';
+import { CommonActions } from '@react-navigation/native';
+import { AuthContext } from '../../AuthContext';
+
+
 
 const jobSeekerSignup = ({ navigation }) => {
+  const { signup } = useContext(AuthContext);
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -23,24 +31,38 @@ const jobSeekerSignup = ({ navigation }) => {
   const [desiredJobTitles, setDesiredJobTitles] = useState('');
   const [education, setEducation] = useState('');
 
-  const handleSubmit = () => {
-    if (!fullName || !email || !password) {
-      Alert.alert('Validation Error', 'Full Name, Email, and Password are required.');
-    } else {
-      console.log('Signup Info:', {
-        fullName,
-        email,
-        password,
-        phone,
-        location,
-        skills,
-        experienceLevel,
-        desiredJobTitles,
-        education,
-      });
-      navigation.navigate('Home');
+ const handleSubmit = async () => {
+    const userData = {
+      fullName,
+      email,
+      password,
+      phone,
+      location,
+      skills,
+      experienceLevel,
+      desiredJobTitles,
+      education,
+    };
+
+    const result = await signup(userData, 'jobseeker');
+
+    if (result.success) {
+      const fetchedUserId = result.userId;
+      Alert.alert('Success', 'Registration successful!');
+      navigation.dispatch(
+        CommonActions.reset({
+          index: 0,
+          routes: [
+            {
+              name: 'JobSeekerTab',
+              params: { userId: fetchedUserId, role: 'jobseeker' },
+            },
+          ],
+        })
+      );
     }
   };
+
 
   return (
     <KeyboardAvoidingView
@@ -52,8 +74,11 @@ const jobSeekerSignup = ({ navigation }) => {
       </View>
       <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
         <View style={styles.container}>
+
+         <View style={styles.mainContainer}>
+        <Text style={styles.title}>Job Seeker Signup</Text>
           <View style={styles.form}>
-            <Text style={styles.title}>Job Seeker Signup</Text>
+
 
             <TextInput style={styles.input} placeholder="Full Name" value={fullName} onChangeText={setFullName} />
             <TextInput style={styles.input} placeholder="Email" value={email} keyboardType="email-address" autoCapitalize="none" onChangeText={setEmail} />
@@ -71,6 +96,7 @@ const jobSeekerSignup = ({ navigation }) => {
             </View>
           </View>
         </View>
+        </View>
       </ScrollView>
     </KeyboardAvoidingView>
   );
@@ -87,11 +113,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingVertical: 40,
   },
+    mainContainer:{
+
+      flex :1,
+      justifyContent: 'center',
+      padding:30,
+
+    },
   container: {
-    alignItems: 'center',
+   flex:1,
   },
   form: {
-    width: '85%',
+
     padding: 20,
     backgroundColor: '#ffffff',
     borderRadius: 10,
@@ -100,13 +133,14 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowOffset: { width: 0, height: 2 },
   },
-  title: {
-    fontSize: 22,
-    marginBottom: 20,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    color: 'blue',
-  },
+   title: {
+     fontSize: RFValue(34),
+     fontWeight: 'bold',
+     marginTop: RFPercentage(0),
+     marginBottom: RFPercentage(6),
+     color: 'blue',
+     textAlign: 'center',
+   },
   input: {
     borderWidth: 1,
     borderColor: '#ccc',

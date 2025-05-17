@@ -1,7 +1,5 @@
 
-import EmployeeLogin from './jobSeekerSignup.js';
-import EmployeerLogin from './EmployeerSignup.js';
-import Logo from '../src/logo.js';
+import Logo from '../../src/logo.js';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
@@ -29,7 +27,7 @@ import {
             onPress={() =>
                            navigation.navigate("jobSeekerSignup")}>
             <Image style={styles.img}
-              source={require('../src/images/image1.jpg')}/>
+              source={require('../../src/images/image1.jpg')}/>
              <Text style={styles.text}>Job seeker</Text>
 
 
@@ -40,7 +38,7 @@ import {
              onPress={() =>
                            navigation.navigate("EmployeerSignup")}>
            <Image style={styles.img}
-                         source={require('../src/images/image1.jpg')}/>    <Text style={styles.text}>Employer</Text>
+                         source={require('../../src/images/image1.jpg')}/>    <Text style={styles.text}>Employer</Text>
           </Pressable>
 
 
