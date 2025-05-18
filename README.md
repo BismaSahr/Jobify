@@ -1,3 +1,10 @@
+# Jobify - React Native Mobile Application
+
+Jobify is a mobile app built with React Native that connects **Job Seekers** and **Employers**. Job Seekers can browse, apply, save jobs, and upload/download resumes. Employers can post jobs, manage applications, and review candidate resumes. The app uses Stack and Bottom Navigation for smooth user experience.
+
+---
+
+
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
 # Getting Started
@@ -95,3 +102,19 @@ To learn more about React Native, take a look at the following resources:
 - [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
 - [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
 - [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+
+
+👥 Sample Credentials
+Job Seeker
+
+Email: seeker@example.com
+
+Password: 12345678
+
+Employer
+
+Email: employer@example.com
+
+Password: 12345678
+
+
