@@ -6,11 +6,17 @@ import {
   ScrollView,
   ActivityIndicator,
   TouchableOpacity,
+  Image,
+  Alert
 } from 'react-native';
 import Logo from '../../src/logo';
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 import { useFocusEffect } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {launchImageLibrary} from 'react-native-image-picker';
+import DefaultImg from '../../src/images/DefaultImg.jpg';
+import Toast from '../../src/Toast';
+
 import ipv4 from '../ipv4';
 
 const Profile = ({ userId, role, navigation }) => {
@@ -18,6 +24,21 @@ const Profile = ({ userId, role, navigation }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [authToken, setAuthToken] = useState(null);
+  const [toastVisible, setToastVisible] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
+  const [toastType, setToastType] = useState(''); // 'success' or 'error'
+
+  const showToast = (message, type) => {
+    setToastMessage(message);
+    setToastType(type);
+    setToastVisible(true);
+  };
+
+  const handleDismissToast = () => {
+    setToastVisible(false);
+    setToastMessage('');
+    setToastType('');
+  };
 
   useEffect(() => {
     const getAuthToken = async () => {
@@ -42,6 +63,44 @@ const Profile = ({ userId, role, navigation }) => {
     getAuthToken();
   }, []);
 
+const handleImagePick = async () => {
+  try {
+    const result = await launchImageLibrary({ mediaType: 'photo', quality: 0.5 });
+
+    if (result.assets && result.assets.length > 0) {
+      const asset = result.assets[0];
+      const formData = new FormData();
+      formData.append('profileImage', {
+        uri: asset.uri.startsWith('file://') ? asset.uri : 'file://' + asset.uri,
+        type: asset.type,
+        name: asset.fileName || 'profile.jpg',
+      });
+      formData.append('userId', userId);
+      formData.append('role', role);
+
+      const response = await fetch(`http://${ipv4.ip}:3000/api/profile/image`, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+          'Content-Type': 'multipart/form-data',
+        },
+        body: formData,
+      });
+
+      const data = await response.json(); // Attempt to parse JSON regardless of status
+
+      if (response.ok) {
+        showToast(data.message, 'success');
+        setProfile({ ...profile, profile_image: data.imagePath });
+      } else {
+        showToast(data.error || 'Failed to upload image.', 'error');
+      }
+    }
+  } catch (error) {
+    console.error('Image pick error:', error);
+    showToast('Could not select image.', 'error');
+  }
+};
   useFocusEffect(
     useCallback(() => {
       const getData = async () => {
@@ -61,6 +120,7 @@ const Profile = ({ userId, role, navigation }) => {
           const data = await response.json();
           if (data && data.profile) {
             setProfile(data.profile);
+            console.log("Image",profile.profile_image);
           }
         } catch (error) {
           console.error('Error fetching profile:', error);
@@ -112,21 +172,35 @@ const Profile = ({ userId, role, navigation }) => {
       <View style={styles.container}>
         <Logo />
 
-        <View style={styles.profileHeader}>
-          <Text style={styles.nameText}>
-            {role === 'jobseeker' ? profile.full_name : profile.company_name}
-          </Text>
-          <Text
-            style={[
-              styles.roleBadge,
-              role === 'employer'
-                ? styles.employerBadge
-                : styles.jobseekerBadge,
-            ]}
-          >
-            {role.toUpperCase()}
-          </Text>
-        </View>
+
+<View style={styles.profileHeader}>
+  <TouchableOpacity onPress={handleImagePick} style={styles.imageWrapper}>
+    <Image
+      source={
+        profile.profile_image
+          ? { uri:profile.profile_image}
+          : DefaultImg
+      }
+      style={styles.profileImage}
+    />
+    <View style={styles.editIconContainer}>
+      <Text style={styles.editIconText}>✎</Text>
+    </View>
+  </TouchableOpacity>
+
+  <Text style={styles.nameText}>
+    {role === 'jobseeker' ? profile.full_name : profile.company_name}
+  </Text>
+  <Text
+    style={[
+      styles.roleBadge,
+      role === 'employer' ? styles.employerBadge : styles.jobseekerBadge,
+    ]}
+  >
+    {role.toUpperCase()}
+  </Text>
+</View>
+
 
         <View style={styles.profileCard}>
           {role === 'jobseeker' ? (
@@ -167,6 +241,12 @@ const Profile = ({ userId, role, navigation }) => {
           <Text style={styles.editButtonText}>Edit Profile</Text>
         </TouchableOpacity>
       </View>
+      <Toast
+        visible={toastVisible}
+        message={toastMessage}
+        type={toastType}
+        onDismiss={handleDismissToast}
+      />
     </ScrollView>
   );
 };
@@ -178,6 +258,33 @@ const styles = StyleSheet.create({
   },
   container: {
     padding: 20,
+  },
+  profileImage: {
+    width: 90,
+    height: 90,
+    borderRadius: 45,
+    marginBottom: 10,
+  },
+  imageWrapper: {
+    position: 'relative',
+  },
+  editIconContainer: {
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    backgroundColor: '#3B82F6',
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 2,
+    borderColor: '#fff',
+  },
+  editIconText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 
   profileHeader: {
@@ -269,370 +376,3 @@ const styles = StyleSheet.create({
 });
 
 export default Profile;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//
-//
-//
-//
-//
-//
-//
-//
-//changes its styling to usual profile screen in market use // Profile.js
-//
-//import React, { useEffect, useState, useCallback } from 'react';
-//
-//import { View, Text, StyleSheet, Button } from 'react-native';
-//
-//import Logo from '../src/logo.js';
-//
-//import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
-//
-//import { useFocusEffect } from '@react-navigation/native'; // Import useFocusEffect
-//
-//
-//
-//const Profile = ({ userId, role, navigation }) => {
-//
-//const [profile, setProfile] = useState(null);
-//
-//const [loading, setLoading] = useState(true);
-//
-//const [error, setError] = useState(null);
-//
-//
-//
-//const getData = useCallback(async () => { // Use useCallback for the function
-//
-//try {
-//
-//setLoading(true);
-//
-//const response = await fetch(
-//
-//`http://192.168.0.104:3000/api/profile?userId=${userId}&role=${role}`,
-//
-//{
-//
-//method: 'GET',
-//
-//headers: {
-//
-//'Content-Type': 'application/json',
-//
-//},
-//
-//}
-//
-//);
-//
-//if (!response.ok) {
-//
-//throw new Error(`HTTP error! status: ${response.status}`);
-//
-//}
-//
-//const data = await response.json();
-//
-//
-//
-//if (data && data.profile) {
-//
-//setProfile(data.profile);
-//
-//}
-//
-//} catch (error) {
-//
-//console.error('Error fetching profile:', error);
-//
-//setError(error);
-//
-//} finally {
-//
-//setLoading(false);
-//
-//}
-//
-//}, [userId, role]); // Add dependencies to useCallback
-//
-//
-//
-//useFocusEffect(
-//
-//useCallback(() => {
-//
-//getData(); // Call getData when the screen focuses
-//
-//return () => {
-//
-//// Optional: Any cleanup you want to perform when the screen loses focus
-//
-//};
-//
-//}, [getData]) // Add getData to the dependency array of useFocusEffect
-//
-//);
-//
-//
-//
-//if (loading) return <Text style={styles.loadingText}>Loading...</Text>;
-//
-//if (error) return <Text style={styles.errorText}>Error: {error.message}</Text>;
-//
-//if (!profile) return <Text style={styles.noDataText}>No profile data.</Text>;
-//
-//
-//
-//return (
-//
-//<View style={styles.mainView}>
-//
-//<Logo />
-//
-//<View style={styles.container}>
-//
-//<Text style={styles.title}>Profile</Text>
-//
-//<View style={styles.profileCard}>
-//
-//{role === 'jobseeker' ? (
-//
-//<>
-//
-//<Text style={styles.infoText}><Text style={styles.label}>Full Name:</Text> {profile.full_name}</Text>
-//
-//<Text style={styles.infoText}><Text style={styles.label}>Email:</Text> {profile.email}</Text>
-//
-//<Text style={styles.infoText}><Text style={styles.label}>Phone:</Text> {profile.phone}</Text>
-//
-//<Text style={styles.infoText}><Text style={styles.label}>Location:</Text> {profile.location}</Text>
-//
-//<Text style={styles.infoText}><Text style={styles.label}>Skills:</Text> {profile.skills}</Text>
-//
-//<Text style={styles.infoText}><Text style={styles.label}>Experience Level:</Text> {profile.experience_level}</Text>
-//
-//<Text style={styles.infoText}><Text style={styles.label}>Desired Job Titles:</Text> {profile.desired_job_titles}</Text>
-//
-//<Text style={styles.infoText}><Text style={styles.label}>Education:</Text> {profile.education}</Text>
-//
-//</>
-//
-//) : role === 'employer' ? (
-//
-//<>
-//
-//<Text style={styles.infoText}><Text style={styles.label}>Company Name:</Text> {profile.company_name}</Text>
-//
-//<Text style={styles.infoText}><Text style={styles.label}>Email:</Text> {profile.email}</Text>
-//
-//<Text style={styles.infoText}><Text style={styles.label}>Website:</Text> {profile.website}</Text>
-//
-//<Text style={styles.infoText}><Text style={styles.label}>Industry:</Text> {profile.industry}</Text>
-//
-//</>
-//
-//) : null}
-//
-//</View>
-//
-//<Button
-//
-//title="Edit Profile"
-//
-//onPress={() => navigation.navigate('EditProfile', { userId: userId, role: role, item: profile })}
-//
-//style={styles.editButton}
-//
-//color="blue" // Consistent button color
-//
-///>
-//
-//</View>
-//
-//</View>
-//
-//);
-//
-//};
-//
-//
-//
-//const styles = StyleSheet.create({
-//
-//mainView: {
-//
-//flex: 1,
-//
-//backgroundColor: '#fff', // Match RoleScreen background
-//
-//},
-//
-//container: {
-//
-//flex: 1,
-//
-//padding: 20,
-//
-//alignItems: 'center', // Center content horizontally
-//
-//},
-//
-//logoContainer: {
-//
-//alignItems: 'center',
-//
-//marginBottom: RFPercentage(3), // Space below the logo
-//
-//marginTop: RFPercentage(2),
-//
-//},
-//
-//title: {
-//
-//fontSize: RFValue(28),
-//
-//fontWeight: 'bold',
-//
-//marginBottom: RFPercentage(3),
-//
-//color: 'blue', // Match RoleScreen blue text
-//
-//textAlign: 'center',
-//
-//},
-//
-//profileCard: {
-//
-//backgroundColor: '#f8f9fa',
-//
-//padding: 20,
-//
-//borderRadius: 10,
-//
-//marginBottom: RFPercentage(3),
-//
-//width: '90%', // Adjust width as needed
-//
-//shadowColor: '#000',
-//
-//shadowOffset: { width: 0, height: 2 },
-//
-//shadowOpacity: 0.1,
-//
-//shadowRadius: 4,
-//
-//elevation: 2,
-//
-//},
-//
-//label: {
-//
-//fontWeight: 'bold',
-//
-//color: '#333',
-//
-//fontSize: RFValue(16),
-//
-//},
-//
-//infoText: {
-//
-//fontSize: RFValue(16),
-//
-//color: '#555',
-//
-//marginBottom: RFPercentage(1.5),
-//
-//},
-//
-//editButton: {
-//
-//backgroundColor: 'blue', // Match RoleScreen button color
-//
-//color: '#fff',
-//
-//paddingVertical: RFPercentage(1.5),
-//
-//borderRadius: 8,
-//
-//fontSize: RFValue(16),
-//
-//fontWeight: 'bold',
-//
-//width: '80%',
-//
-//},
-//
-//loadingText: {
-//
-//fontSize: RFValue(18),
-//
-//textAlign: 'center',
-//
-//marginTop: RFPercentage(10),
-//
-//color: '#777',
-//
-//},
-//
-//errorText: {
-//
-//fontSize: RFValue(18),
-//
-//textAlign: 'center',
-//
-//marginTop: RFPercentage(10),
-//
-//color: '#dc3545',
-//
-//},
-//
-//noDataText: {
-//
-//fontSize: RFValue(18),
-//
-//textAlign: 'center',
-//
-//marginTop: RFPercentage(10),
-//
-//color: '#999',
-//
-//},
-//
-//goBackButton: {
-//
-//backgroundColor: 'transparent',
-//
-//padding: 10,
-//
-//borderRadius: 50,
-//
-//alignItems: 'center',
-//
-//justifyContent: 'center',
-//
-//position: 'absolute',
-//
-//bottom: 20,
-//
-//},
-//
-//});
-//
-//
-//
-//export default Profile;

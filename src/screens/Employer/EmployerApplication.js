@@ -132,6 +132,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     textAlign: 'center',
   },
+    profileImage: {
+      width: 90,
+      height: 90,
+      borderRadius: 45,
+      marginBottom: 10,
+    },
   error: {
     color: 'red',
     marginTop: 50,
