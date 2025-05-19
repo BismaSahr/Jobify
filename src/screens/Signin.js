@@ -12,7 +12,7 @@ import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Logo from '../../src/logo.js';
 import { CommonActions } from '@react-navigation/native';
-import { AuthContext } from '../../src/AuthContext';
+import { AuthContext } from '../../context/AuthContext';
 import { Picker } from '@react-native-picker/picker';
 
 const SignInScreen = ({ navigation }) => {

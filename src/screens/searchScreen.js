@@ -14,7 +14,7 @@ import { RFPercentage } from 'react-native-responsive-fontsize';
 import ipv4 from '../ipv4';
 
 import Logo from '../../src/logo';
-import { useSearchState, useSearchDispatch } from '../SearchContext';
+import { useSearchState, useSearchDispatch } from '../../context/SearchContext';
 
 const searchScreen = ({ navigation }) => {
   const { searchQuery, jobs, loading, refreshing } = useSearchState();

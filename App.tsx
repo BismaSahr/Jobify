@@ -3,8 +3,8 @@ import { View, Text, TextInput, StyleSheet, Button, Alert, ScrollView, KeyboardA
 
 
 import StackNavigation from './src/navigation/stackNavigation.js';
-import { AuthProvider } from './src/AuthContext';
-import { SearchProvider } from './src/SearchContext';
+import { AuthProvider } from './context/AuthContext';
+import { SearchProvider } from './context/SearchContext';
 
 const App = () => {
     return (

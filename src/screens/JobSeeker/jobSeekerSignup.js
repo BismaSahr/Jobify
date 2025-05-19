@@ -15,7 +15,7 @@ import {
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { StackActions, NavigationActions } from '@react-navigation/native';
 import { CommonActions } from '@react-navigation/native';
-import { AuthContext } from '../../AuthContext';
+import { AuthContext } from '../../../context/AuthContext';
 
 
 

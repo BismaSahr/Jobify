@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { AuthContext } from '../../src/AuthContext';
+import { AuthContext } from '../../context/AuthContext';
 import { View, Text, TextInput, StyleSheet, Alert, ScrollView, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
