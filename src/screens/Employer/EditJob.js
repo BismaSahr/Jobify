@@ -14,8 +14,8 @@ import {
 import DropDownPicker from 'react-native-dropdown-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import ipv4 from '../../ipv4';
-import Toast from '../../Toast'; // Import the Toast component
+import ipv4 from '../../../components/ipv4';
+import Toast from '../../../components/Toast'; // Import the Toast component
 
 const EditJobScreen = ({ route, navigation }) => {
   const { employer_id, jobId } = route.params;

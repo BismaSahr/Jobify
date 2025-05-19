@@ -1,4 +1,4 @@
-import Logo from '../../logo';
+import Logo from '../../../components/logo';
 
 import React, { useState, useContext } from 'react';
 import {

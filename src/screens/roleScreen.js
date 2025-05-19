@@ -1,5 +1,5 @@
 
-import Logo from '../../src/logo.js';
+import Logo from '../../components/logo.js';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";

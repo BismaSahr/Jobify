@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, Linking, TouchableOpacity } from 'react-native';
 import { RFPercentage } from 'react-native-responsive-fontsize';
-import Toast from '../../Toast'; // Import the Toast component
+import Toast from '../../../components/Toast'; // Import the Toast component
 import { useState } from 'react';
 
 const ApplicationDetail = ({ route }) => {

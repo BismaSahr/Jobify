@@ -1,5 +1,5 @@
-import Logo from '../../logo';
-import ipv4 from '../../ipv4';
+import Logo from '../../../components/logo';
+import ipv4 from '../../../components/ipv4';
 import React, { useState, useContext } from 'react';
 import {
   View,

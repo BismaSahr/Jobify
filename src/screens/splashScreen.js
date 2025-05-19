@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import Logo from '../../src/logo';
+import Logo from '../../components/logo';
 import { View, Text, StyleSheet } from 'react-native';
 
 const Splash = ({navigation}) => {

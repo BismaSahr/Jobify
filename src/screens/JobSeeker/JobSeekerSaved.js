@@ -14,9 +14,9 @@ import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import ipv4 from '../../ipv4';
-import Logo from '../../logo';
-import Toast from '../../Toast'; // Import your Toast component
+import ipv4 from '../../../components/ipv4';
+import Logo from '../../../components/logo';
+import Toast from '../../../components/Toast'; // Import your Toast component
 
 const JobSeekerSaved = () => {
   const [jobseekerId, setJobseekerId] = useState(null);

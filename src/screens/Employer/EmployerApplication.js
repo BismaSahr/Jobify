@@ -10,8 +10,8 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { RFPercentage } from 'react-native-responsive-fontsize';
-import ipv4 from '../../ipv4';
-import Logo from '../../logo';
+import ipv4 from '../../../components/ipv4';
+import Logo from '../../../components/logo';
 
 const EmployerApplication = ({ navigation }) => {
   const [applications, setApplications] = useState([]);

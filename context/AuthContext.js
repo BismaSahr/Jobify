@@ -1,7 +1,7 @@
 import React, { createContext, useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Alert } from 'react-native';
-import ipv4 from '../src/ipv4';
+import ipv4 from '../components/ipv4';
 
 export const AuthContext = createContext({
   userToken: null,

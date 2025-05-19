@@ -1,6 +1,6 @@
 // SearchContext.js
 import React, { createContext, useReducer, useContext } from 'react';
-import ipv4 from '../src/ipv4';
+import ipv4 from '../components/ipv4';
 
 const SearchStateContext = createContext();
 const SearchDispatchContext = createContext();

@@ -9,15 +9,15 @@ import {
   Image,
   Alert
 } from 'react-native';
-import Logo from '../../src/logo';
+import Logo from '../../components/logo';
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 import { useFocusEffect } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {launchImageLibrary} from 'react-native-image-picker';
 import DefaultImg from '../../src/images/DefaultImg.jpg';
-import Toast from '../../src/Toast';
+import Toast from '../../components/Toast';
 
-import ipv4 from '../ipv4';
+import ipv4 from '../../components/ipv4';
 
 const Profile = ({ userId, role, navigation }) => {
   const [profile, setProfile] = useState('');

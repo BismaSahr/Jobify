@@ -11,9 +11,9 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { RFPercentage } from 'react-native-responsive-fontsize';
-import ipv4 from '../ipv4';
+import ipv4 from '../../components/ipv4';
 
-import Logo from '../../src/logo';
+import Logo from '../../components/logo';
 import { useSearchState, useSearchDispatch } from '../../context/SearchContext';
 
 const searchScreen = ({ navigation }) => {

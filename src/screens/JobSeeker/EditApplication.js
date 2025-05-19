@@ -13,8 +13,8 @@ import {
 } from 'react-native';
 import { pick } from '@react-native-documents/picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import ipv4 from '../../ipv4';
-import Toast from '../../Toast'; // Import the Toast component
+import ipv4 from '../../../components/ipv4';
+import Toast from '../../../components/Toast'; // Import the Toast component
 
 const EditApplicationScreen = ({ route, navigation }) => {
   const { application } = route.params;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Alert } from 'react-native';
 import { RFPercentage } from 'react-native-responsive-fontsize';
-import Logo from '../logo';
+import Logo from '../../components/logo';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const JobDetailScreen = ({ navigation, route }) => {

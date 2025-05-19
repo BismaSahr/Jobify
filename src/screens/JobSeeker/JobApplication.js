@@ -14,8 +14,8 @@ import {
 import { pick } from '@react-native-documents/picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
-import ipv4 from '../../ipv4';
-import Toast from '../../Toast'; // Import the Toast component
+import ipv4 from '../../../components/ipv4';
+import Toast from '../../../components/Toast'; // Import the Toast component
 
 const JobApplicationForm = ({ route, navigation }) => {
   const { job_id, employer_id } = route.params;

@@ -11,9 +11,9 @@ import {
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { RFPercentage } from 'react-native-responsive-fontsize';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import ipv4 from '../../ipv4';
-import Logo from '../../logo';
-import Toast from '../../Toast'; // Import the Toast component
+import ipv4 from '../../../components/ipv4';
+import Logo from '../../../components/logo';
+import Toast from '../../../components/Toast'; // Import the Toast component
 
 const EmployerJobs = () => {
   const [jobs, setJobs] = useState([]);

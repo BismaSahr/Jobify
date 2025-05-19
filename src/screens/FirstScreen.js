@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Linking, Image } from 'react-native';
 import { RFPercentage } from "react-native-responsive-fontsize";
-import Logo from '../../src/logo.js';
+import Logo from '../../components/logo.js';
 import { useNavigation } from '@react-navigation/native';
 
 const FirstScreen = () => {
