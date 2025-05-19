@@ -1,0 +1,296 @@
+{
+    "info": {
+        "_postman_id": "28d54408-d7ef-41cf-8991-d39d02f320ea",
+        "name": "Jobify_continue",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "description": ""
+    },
+    "item": [
+        {
+            "name": "Saved_jobs",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://192.168.0.104:3000/api/saved",
+                    "path": [
+                        "api",
+                        "saved"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "192",
+                        "168",
+                        "0",
+                        "104"
+                    ],
+                    "port": "3000"
+                },
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    },
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhhcmR3YXJlQGdtYWlsLmNvbSIsImlhdCI6MTc0NzUxMDk1MiwiZXhwIjoxNzc5MDY4NTUyfQ.n2eIVLXzOjC1499r5_wd6l_8MqBUHYUX4RnGOj6Ac6s"
+                    },
+                    {
+                        "key": "Accept",
+                        "value": "*/*",
+                        "disabled": true
+                    },
+                    {
+                        "key": "User-Agent",
+                        "value": "Thunder Client (https://www.thunderclient.com)",
+                        "disabled": true
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\r\n  \"job_id\": 3,\r\n  \"jobseeker_id\": 2\r\n}\r\n"
+                }
+            }
+        },
+        {
+            "name": "Get_SavedJobs",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://192.168.0.104:3000/api/saved/2",
+                    "path": [
+                        "api",
+                        "saved",
+                        "2"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "192",
+                        "168",
+                        "0",
+                        "104"
+                    ],
+                    "port": "3000"
+                },
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    },
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhhcmR3YXJlQGdtYWlsLmNvbSIsImlhdCI6MTc0NzUxMDk1MiwiZXhwIjoxNzc5MDY4NTUyfQ.n2eIVLXzOjC1499r5_wd6l_8MqBUHYUX4RnGOj6Ac6s"
+                    },
+                    {
+                        "key": "Accept",
+                        "value": "*/*",
+                        "disabled": true
+                    },
+                    {
+                        "key": "User-Agent",
+                        "value": "Thunder Client (https://www.thunderclient.com)",
+                        "disabled": true
+                    }
+                ]
+            }
+        },
+        {
+            "name": "Delete_SavedJobs",
+            "request": {
+                "method": "DELETE",
+                "url": {
+                    "raw": "http://192.168.0.104:3000/api/saved/delete/3",
+                    "path": [
+                        "api",
+                        "saved",
+                        "delete",
+                        "3"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "192",
+                        "168",
+                        "0",
+                        "104"
+                    ],
+                    "port": "3000"
+                },
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    },
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhhcmR3YXJlQGdtYWlsLmNvbSIsImlhdCI6MTc0NzUxMDk1MiwiZXhwIjoxNzc5MDY4NTUyfQ.n2eIVLXzOjC1499r5_wd6l_8MqBUHYUX4RnGOj6Ac6s"
+                    },
+                    {
+                        "key": "Accept",
+                        "value": "*/*",
+                        "disabled": true
+                    },
+                    {
+                        "key": "User-Agent",
+                        "value": "Thunder Client (https://www.thunderclient.com)",
+                        "disabled": true
+                    }
+                ]
+            }
+        },
+        {
+            "name": "JobApplicaion_Get",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://192.168.0.104:3000/api/job-applications/jobseeker/3",
+                    "path": [
+                        "api",
+                        "job-applications",
+                        "jobseeker",
+                        "3"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "192",
+                        "168",
+                        "0",
+                        "104"
+                    ],
+                    "port": "3000"
+                },
+                "header": [
+                    {
+                        "key": "Accept",
+                        "value": "*/*",
+                        "disabled": true
+                    },
+                    {
+                        "key": "User-Agent",
+                        "value": "Thunder Client (https://www.thunderclient.com)",
+                        "disabled": true
+                    },
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhhcmR3YXJlQGdtYWlsLmNvbSIsImlhdCI6MTc0NzUxMDk1MiwiZXhwIjoxNzc5MDY4NTUyfQ.n2eIVLXzOjC1499r5_wd6l_8MqBUHYUX4RnGOj6Ac6s"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "JobApplicationForm",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://192.168.0.104:3000/api/job-applications/upload",
+                    "path": [
+                        "api",
+                        "job-applications",
+                        "upload"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "192",
+                        "168",
+                        "0",
+                        "104"
+                    ],
+                    "port": "3000"
+                },
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhhcmR3YXJlQGdtYWlsLmNvbSIsImlhdCI6MTc0NzUxMDk1MiwiZXhwIjoxNzc5MDY4NTUyfQ.n2eIVLXzOjC1499r5_wd6l_8MqBUHYUX4RnGOj6Ac6s"
+                    },
+                    {
+                        "key": "Accept",
+                        "value": "*/*",
+                        "disabled": true
+                    },
+                    {
+                        "key": "User-Agent",
+                        "value": "Thunder Client (https://www.thunderclient.com)",
+                        "disabled": true
+                    }
+                ],
+                "body": {
+                    "mode": "formdata",
+                    "formdata": [
+                        {
+                            "key": "job_id",
+                            "value": "17",
+                            "type": "default"
+                        },
+                        {
+                            "key": "employer_id",
+                            "value": "20",
+                            "type": "default"
+                        },
+                        {
+                            "key": "jobseeker_id",
+                            "value": "16",
+                            "type": "default"
+                        },
+                        {
+                            "key": "full_name",
+                            "value": "Laiq",
+                            "type": "default"
+                        },
+                        {
+                            "key": "email",
+                            "value": "laiq@gmail.com",
+                            "type": "default"
+                        },
+                        {
+                            "key": "phone",
+                            "value": "03333927849",
+                            "type": "default"
+                        },
+                        {
+                            "key": "cover_letter",
+                            "value": "dhudj",
+                            "type": "default"
+                        },
+                        {
+                            "key": "resume",
+                            "value": "resume=@/path/to/resume.pdf",
+                            "type": "default"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "JobApplication_EmployeeGet",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://192.168.0.104:3000/api/job-applications/employer/20",
+                    "path": [
+                        "api",
+                        "job-applications",
+                        "employer",
+                        "20"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "192",
+                        "168",
+                        "0",
+                        "104"
+                    ],
+                    "port": "3000"
+                },
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhhcmR3YXJlQGdtYWlsLmNvbSIsImlhdCI6MTc0NzUxMDk1MiwiZXhwIjoxNzc5MDY4NTUyfQ.n2eIVLXzOjC1499r5_wd6l_8MqBUHYUX4RnGOj6Ac6s"
+                    }
+                ]
+            }
+        }
+    ]
+}
