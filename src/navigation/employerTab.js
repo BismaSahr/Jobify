@@ -5,7 +5,7 @@ import HomeScreen from '../../src/screens/Home.js';
 import EmployerApplication from '../../src/screens/Employer/EmployerApplication.js';
 import EmployerJobs from '../../src/screens/Employer/EmployerJobs.js';
 import Profile from '../../src/screens/Profile.js';
-import Images from '../../src/images/index.js';
+import Images from '../../assets/images/index.js';
 
 const Tab = createBottomTabNavigator();
 

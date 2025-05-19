@@ -17,7 +17,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import ipv4 from '../../components/ipv4.js';
 import Logo from '../../components/logo.js';
 import Toast from '../../components/Toast.js'; // Import your Toast component
-import Images from '../../src/images/index.js';
+import Images from '../../assets/images/index.js';
 
 const HomeScreen = () => {
   const [jobs, setJobs] = useState([]);

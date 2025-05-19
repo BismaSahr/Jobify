@@ -14,7 +14,7 @@ import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 import { useFocusEffect } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {launchImageLibrary} from 'react-native-image-picker';
-import DefaultImg from '../../src/images/DefaultImg.jpg';
+import DefaultImg from '../../assets/images/DefaultImg.jpg';
 import Toast from '../../components/Toast';
 
 import ipv4 from '../../components/ipv4';

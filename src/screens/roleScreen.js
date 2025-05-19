@@ -27,7 +27,7 @@ import {
             onPress={() =>
                            navigation.navigate("jobSeekerSignup")}>
             <Image style={styles.img}
-              source={require('../../src/images/image1.jpg')}/>
+              source={require('../../assets/images/image1.jpg')}/>
              <Text style={styles.text}>Job seeker</Text>
 
 
@@ -38,7 +38,7 @@ import {
              onPress={() =>
                            navigation.navigate("EmployeerSignup")}>
            <Image style={styles.img}
-                         source={require('../../src/images/image1.jpg')}/>    <Text style={styles.text}>Employer</Text>
+                         source={require('../../assets/images/image1.jpg')}/>    <Text style={styles.text}>Employer</Text>
           </Pressable>
 
 
